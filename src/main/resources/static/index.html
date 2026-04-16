@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -339,7 +339,7 @@
 
 
     async function startQuiz(count) {
-    const res = await fetch(`http://localhost:8080/quiz/start?count=${count}&bank=${currentBank}`);
+    const res = await fetch(`/quiz/start?count=${count}&bank=${currentBank}`);
     const data = await res.json();
 
     quizData = data.questions;
@@ -350,7 +350,7 @@
 }
 async function infiniteMode() {
 
-    const res = await fetch(`http://localhost:8080/quiz/start?count=1000&bank=${currentBank}`);
+    const res = await fetch(`/quiz/start?count=1000&bank=${currentBank}`);
     const data = await res.json();
 
     let pool = data.questions;
@@ -418,7 +418,7 @@ function renderSingle(q) {
     }
     async function practiceWrong() {
 
-    const res = await fetch(`http://localhost:8080/quiz/set/1?bank=${currentBank}`);
+    const res = await fetch(`/quiz/set/1?bank=${currentBank}`);
     const data = await res.json();
 
     const filtered = data.filter(q => wrongQuestions.includes(q.id));
@@ -428,7 +428,7 @@ function renderSingle(q) {
 function getCorrectAnswer(id) {
     // call backend to fetch correct answer
     // hack: reuse set API
-    return fetch(`http://localhost:8080/quiz/set/${id}?bank=${currentBank}`)
+    return fetch(`/quiz/set/${id}?bank=${currentBank}`)
         .then(res => res.json())
         .then(data => {
             const q = data.find(x => x.id === id);
@@ -437,7 +437,7 @@ function getCorrectAnswer(id) {
 }
     function submitQuiz() {
 
-    fetch(`http://localhost:8080/quiz/submit?bank=${currentBank}`, {
+    fetch(`/quiz/submit?bank=${currentBank}`, {
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({answers: userAnswers})
@@ -447,8 +447,8 @@ function getCorrectAnswer(id) {
 
         alert(text);
 
-        // 🔥 fetch all correct answers once
-        fetch(`http://localhost:8080/quiz/set/1?bank=${currentBank}`)
+        // ðŸ”¥ fetch all correct answers once
+        fetch(`/quiz/set/1?bank=${currentBank}`)
         .then(res => res.json())
         .then(allQuestions => {
 
@@ -478,7 +478,7 @@ function getCorrectAnswer(id) {
     async function startSet() {
         const id = document.getElementById("startId").value;
 
-        const res = await fetch(`http://localhost:8080/quiz/set/${id}?bank=${currentBank}`);
+        const res = await fetch(`/quiz/set/${id}?bank=${currentBank}`);
         const data = await res.json();
 
         renderSet(data);
@@ -506,7 +506,7 @@ function getCorrectAnswer(id) {
 
    async function check(qid, opt, el) {
 
-    const res = await fetch(`http://localhost:8080/quiz/check?bank=${currentBank}`, {
+    const res = await fetch(`/quiz/check?bank=${currentBank}`, {
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({
@@ -533,7 +533,7 @@ function getCorrectAnswer(id) {
 
     saveWrongQuestions();
 
-    // 🔥 highlight correct options
+    // ðŸ”¥ highlight correct options
     const parent = el.parentElement;
     const options = parent.querySelectorAll(".option");
 
