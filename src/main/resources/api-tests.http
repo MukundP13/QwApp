@@ -1,0 +1,6 @@
+POST http://localhost:8080/quiz/check
+Content-Type: application/json
+{
+  "questionId": 6,
+  "selectedOptions": ["A","C","E"]
+}

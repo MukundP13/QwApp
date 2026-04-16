@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SN Quiz</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-1: #0b1020;
+            --bg-2: #131a2a;
+            --panel: rgba(20, 27, 45, 0.76);
+            --panel-border: rgba(255, 255, 255, 0.14);
+            --text: #f8fbff;
+            --muted: #b8c4da;
+            --primary: #53b7ff;
+            --primary-strong: #2e9be2;
+            --accent: #8adf7b;
+            --danger: #ff6e7a;
+            --ok: #21b885;
+            --shadow: 0 24px 60px rgba(5, 9, 20, 0.45);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Space Grotesk", "Segoe UI", sans-serif;
+            margin: 0;
+            min-height: 100vh;
+            padding: 24px 16px 32px;
+            color: var(--text);
+            background:
+                radial-gradient(circle at 15% 10%, #23438d 0%, transparent 30%),
+                radial-gradient(circle at 85% 0%, #145f53 0%, transparent 32%),
+                linear-gradient(140deg, var(--bg-1), var(--bg-2));
+        }
+
+        button {
+            font-family: inherit;
+            font-weight: 600;
+            font-size: 0.95rem;
+            letter-spacing: 0.01em;
+            padding: 10px 14px;
+            color: var(--text);
+            border: 1px solid transparent;
+            border-radius: 12px;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.03));
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.22);
+            transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+            cursor: pointer;
+        }
+
+        button:hover {
+            transform: translateY(-1px);
+            border-color: rgba(255, 255, 255, 0.25);
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.06));
+        }
+
+        .container {
+            max-width: 960px;
+            margin: auto;
+            padding: 24px;
+            border: 1px solid var(--panel-border);
+            border-radius: 22px;
+            background: var(--panel);
+            box-shadow: var(--shadow);
+            backdrop-filter: blur(6px);
+            animation: fadeIn 0.45s ease-out;
+        }
+
+        .hero {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 14px;
+            flex-wrap: wrap;
+        }
+
+        h2 {
+            margin: 0;
+            font-size: clamp(1.5rem, 2.7vw, 2.1rem);
+            line-height: 1.15;
+        }
+
+        .bank-chip {
+            font-size: 0.85rem;
+            padding: 8px 12px;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: var(--muted);
+            background: rgba(255, 255, 255, 0.06);
+        }
+
+        .toolbar {
+            display: grid;
+            gap: 12px;
+            margin: 16px 0 8px;
+        }
+
+        .group {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .primary-btn {
+            background: linear-gradient(180deg, var(--primary), var(--primary-strong));
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .soft-btn {
+            border-color: rgba(255, 255, 255, 0.16);
+        }
+
+        .danger-btn {
+            background: linear-gradient(180deg, #d86372, #bd4054);
+        }
+
+        .inline-input {
+            width: 130px;
+            font-family: inherit;
+            color: var(--text);
+            border: 1px solid rgba(255, 255, 255, 0.22);
+            border-radius: 12px;
+            padding: 10px 12px;
+            background: rgba(11, 16, 30, 0.56);
+            outline: none;
+        }
+
+        .inline-input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(83, 183, 255, 0.2);
+        }
+
+        .hint {
+            color: var(--muted);
+            font-size: 0.86rem;
+            margin-top: 2px;
+        }
+
+        #content {
+            margin-top: 16px;
+            display: grid;
+            gap: 12px;
+        }
+
+        .question {
+            margin-top: 0;
+            padding: 16px;
+            border-radius: 14px;
+            border: 1px solid rgba(255, 255, 255, 0.13);
+            background: rgba(6, 10, 20, 0.45);
+            animation: riseIn 0.25s ease forwards;
+        }
+
+        .question-title {
+            display: block;
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+
+        .option {
+            padding: 11px 12px;
+            margin: 7px 0;
+            border-radius: 11px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.05);
+            transition: transform 0.16s ease, border-color 0.16s ease;
+        }
+
+        .option:hover {
+            transform: translateX(2px);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .option input[type="checkbox"] {
+            accent-color: var(--primary);
+            margin-right: 8px;
+        }
+
+        .selected {
+            border-color: rgba(83, 183, 255, 0.7);
+            background: rgba(83, 183, 255, 0.18);
+        }
+
+        .correct {
+            background: rgba(33, 184, 133, 0.24);
+            border-color: rgba(33, 184, 133, 0.66);
+        }
+
+        .wrong {
+            background: rgba(255, 110, 122, 0.2);
+            border-color: rgba(255, 110, 122, 0.62);
+        }
+
+        .action-row {
+            margin-top: 8px;
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        body[data-bank="nquestions"] .bank-chip {
+            color: #d9ffd3;
+            border-color: rgba(138, 223, 123, 0.52);
+            background: rgba(138, 223, 123, 0.2);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(8px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes riseIn {
+            from {
+                opacity: 0;
+                transform: translateY(6px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 700px) {
+            body {
+                padding: 12px;
+            }
+
+            .container {
+                padding: 16px;
+                border-radius: 16px;
+            }
+
+            button {
+                width: 100%;
+            }
+
+            .group {
+                display: grid;
+                grid-template-columns: 1fr;
+            }
+
+            .inline-input {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="hero">
+        <h2>SN Quiz</h2>
+        <span id="bankIndicator" class="bank-chip">Current Bank: CSA ServiceNow</span>
+    </div>
+
+    <div class="toolbar">
+        <div class="group">
+            <button id="bankToggleBtn" class="primary-btn" onclick="toggleQuestionBank()">Mode: CSA ServiceNow</button>
+            <button class="danger-btn" onclick="practiceWrong()">Practice Wrong</button>
+        </div>
+
+        <div class="group">
+            <button class="soft-btn" onclick="startQuiz(10)">Quiz 10</button>
+            <button class="soft-btn" onclick="startQuiz(20)">Quiz 20</button>
+            <button class="soft-btn" onclick="startQuiz(50)">Quiz 50</button>
+            <button class="soft-btn" onclick="infiniteMode()">Infinite Random</button>
+        </div>
+
+        <div class="group">
+            <input class="inline-input" id="startId" placeholder="Start ID">
+            <button class="soft-btn" onclick="startSet()">Set Mode</button>
+        </div>
+    </div>
+
+    <div class="hint">Mode switch keeps question banks fully isolated, including wrong-question history.</div>
+
+    <div id="content"></div>
+
+</div>
+
+<script>
+
+    let quizData = [];
+    let userAnswers = {};
+    let currentBank = localStorage.getItem("quizBank") || "main";
+    let wrongQuestions = [];
+
+    function getWrongStorageKey() {
+        return currentBank === "nquestions" ? "wrong_nquestions" : "wrong_main";
+    }
+
+    function loadWrongQuestions() {
+        wrongQuestions = JSON.parse(localStorage.getItem(getWrongStorageKey())) || [];
+    }
+
+    function saveWrongQuestions() {
+        localStorage.setItem(getWrongStorageKey(), JSON.stringify(wrongQuestions));
+    }
+
+    function updateBankButtonLabel() {
+        const btn = document.getElementById("bankToggleBtn");
+        const chip = document.getElementById("bankIndicator");
+        const label = currentBank === "nquestions" ? "Mode: Computer Architecture" : "Mode: CSA ServiceNow";
+        const chipLabel = currentBank === "nquestions" ? "Current Bank: Computer Architecture" : "Current Bank: CSA ServiceNow";
+        btn.innerText = label;
+        chip.innerText = chipLabel;
+        document.body.setAttribute("data-bank", currentBank);
+    }
+
+    function toggleQuestionBank() {
+        currentBank = currentBank === "main" ? "nquestions" : "main";
+        localStorage.setItem("quizBank", currentBank);
+
+        loadWrongQuestions();
+        updateBankButtonLabel();
+        userAnswers = {};
+        quizData = [];
+        document.getElementById("content").innerHTML = "<p>Mode switched. Start a quiz in this bank.</p>";
+    }
+
+    loadWrongQuestions();
+    updateBankButtonLabel();
+
+
+    async function startQuiz(count) {
+    const res = await fetch(`http://localhost:8080/quiz/start?count=${count}&bank=${currentBank}`);
+    const data = await res.json();
+
+    quizData = data.questions;
+
+    userAnswers = {};
+
+    renderQuiz();
+}
+async function infiniteMode() {
+
+    const res = await fetch(`http://localhost:8080/quiz/start?count=1000&bank=${currentBank}`);
+    const data = await res.json();
+
+    let pool = data.questions;
+
+    function nextQuestion() {
+        const q = pool[Math.floor(Math.random() * pool.length)];
+
+        renderSingle(q);
+    }
+
+    window.nextQuestion = nextQuestion;
+
+    nextQuestion();
+}
+function renderSingle(q) {
+    let html = `<div class="question">
+        <b class="question-title">${q.id}. ${q.question}</b>`;
+
+    for (let key in q.options) {
+        html += `
+        <div class="option" onclick="check(${q.id}, '${key}', this)">
+            ${key}: ${q.options[key]}
+        </div>`;
+    }
+
+    html += `</div><div class="action-row"><button class="soft-btn" onclick="nextQuestion()">Next Random</button></div>`;
+
+    document.getElementById("content").innerHTML = html;
+}
+   function renderQuiz() {
+    let html = "";
+
+    quizData.forEach(q => {
+        html += `<div class="question" data-q="${q.id}">
+            <b class="question-title">${q.id}. ${q.question}</b>`;
+
+        for (let key in q.options) {
+            html += `
+            <div class="option" onclick="toggleQuizOption(this, ${q.id}, '${key}')">
+                ${key}: ${q.options[key]}
+            </div>`;
+        }
+
+        html += `</div>`;
+    });
+
+    html += `<div class="action-row"><button class="primary-btn" onclick="submitQuiz()">Submit Quiz</button></div>`;
+
+    document.getElementById("content").innerHTML = html;
+}
+
+    function toggleQuizOption(el, qid, opt) {
+        selectAnswer(qid, opt);
+        el.classList.toggle("selected");
+    }
+
+    function selectAnswer(qid, opt) {
+        if (!userAnswers[qid]) userAnswers[qid] = [];
+
+        if (userAnswers[qid].includes(opt)) {
+            userAnswers[qid] = userAnswers[qid].filter(x => x !== opt);
+        } else {
+            userAnswers[qid].push(opt);
+        }
+    }
+    async function practiceWrong() {
+
+    const res = await fetch(`http://localhost:8080/quiz/set/1?bank=${currentBank}`);
+    const data = await res.json();
+
+    const filtered = data.filter(q => wrongQuestions.includes(q.id));
+
+    renderSet(filtered);
+}
+function getCorrectAnswer(id) {
+    // call backend to fetch correct answer
+    // hack: reuse set API
+    return fetch(`http://localhost:8080/quiz/set/${id}?bank=${currentBank}`)
+        .then(res => res.json())
+        .then(data => {
+            const q = data.find(x => x.id === id);
+            return q.answer;
+        });
+}
+    function submitQuiz() {
+
+    fetch(`http://localhost:8080/quiz/submit?bank=${currentBank}`, {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({answers: userAnswers})
+    })
+    .then(res => res.text())
+    .then(text => {
+
+        alert(text);
+
+        // 🔥 fetch all correct answers once
+        fetch(`http://localhost:8080/quiz/set/1?bank=${currentBank}`)
+        .then(res => res.json())
+        .then(allQuestions => {
+
+            quizData.forEach(q => {
+
+            const matched = allQuestions.find(x => x.id === q.id);
+            if (!matched) return;
+            const correct = matched.answer;
+
+                const questionDiv = document.querySelector(`[data-q="${q.id}"]`);
+                const options = questionDiv.querySelectorAll(".option");
+
+                options.forEach(optEl => {
+                    const key = optEl.innerText.trim().charAt(0);
+
+                    if (correct.includes(key)) {
+                        optEl.classList.add("correct");
+                    }
+                });
+            });
+
+        });
+
+    });
+}
+
+    async function startSet() {
+        const id = document.getElementById("startId").value;
+
+        const res = await fetch(`http://localhost:8080/quiz/set/${id}?bank=${currentBank}`);
+        const data = await res.json();
+
+        renderSet(data);
+    }
+
+    function renderSet(data) {
+        let html = "";
+
+        data.forEach(q => {
+            html += `<div class="question">
+                <b class="question-title">${q.id}. ${q.question}</b>`;
+
+            for (let key in q.options) {
+                html += `
+                <div class="option" onclick="check(${q.id}, '${key}', this)">
+                    ${key}: ${q.options[key]}
+                </div>`;
+            }
+
+            html += `</div>`;
+        });
+
+        document.getElementById("content").innerHTML = html;
+    }
+
+   async function check(qid, opt, el) {
+
+    const res = await fetch(`http://localhost:8080/quiz/check?bank=${currentBank}`, {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({
+            questionId: qid,
+            selectedOptions: [opt]
+        })
+    });
+
+    const data = await res.json();
+    const correctAnswers = data.answer;
+
+    if (correctAnswers.includes(opt)) {
+        el.classList.add("correct");
+
+        // remove from wrong list
+        wrongQuestions = wrongQuestions.filter(x => x !== qid);
+    } else {
+        el.classList.add("wrong");
+
+        if (!wrongQuestions.includes(qid)) {
+            wrongQuestions.push(qid);
+        }
+    }
+
+    saveWrongQuestions();
+
+    // 🔥 highlight correct options
+    const parent = el.parentElement;
+    const options = parent.querySelectorAll(".option");
+
+    options.forEach(optEl => {
+        const key = optEl.innerText.trim().charAt(0);
+
+        if (correctAnswers.includes(key)) {
+            optEl.classList.add("correct");
+        }
+    });
+}
+
+</script>
+
+</body>
+</html>

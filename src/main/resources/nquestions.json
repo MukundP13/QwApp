@@ -1,0 +1,1322 @@
+[
+  {
+    "id": 1,
+    "question": "Why did aggressive clock-frequency scaling become impractical even before hitting physical transistor limits?",
+    "options": {
+      "A": "Limited instruction-level parallelism",
+      "B": "Increasing power density and thermal limits",
+      "C": "Lack of compiler support",
+      "D": "Reduced memory bandwidth"
+    },
+    "answer": "B"
+  },
+  {
+    "id": 2,
+    "question": "Even with perfect branch prediction, which factor fundamentally limits the benefit of very deep pipelines?",
+    "options": {
+      "A": "Increased register file size",
+      "B": "Instruction dependencies and pipeline overhead",
+      "C": "Cache coherence traffic",
+      "D": "Limited address space"
+    },
+    "answer": "B"
+  },
+  {
+    "id": 3,
+    "question": "Why does exploiting instruction-level parallelism (ILP) show diminishing returns beyond a point?",
+    "options": {
+      "A": "Programs become shorter",
+      "B": "Hardware cannot increase clock speed",
+      "C": "True data dependencies restrict parallel execution",
+      "D": "Memory latency becomes zero"
+    },
+    "answer": "C"
+  },
+  {
+    "id": 4,
+    "question": "Compared to single-core scaling, multicore designs primarily improve performance by:",
+    "options": {
+      "A": "Increasing single-thread execution speed",
+      "B": "Exploiting thread-level parallelism",
+      "C": "Eliminating branch mispredictions",
+      "D": "Reducing instruction count"
+    },
+    "answer": "B"
+  },
+  {
+    "id": 5,
+    "question": "Why are general-purpose CPUs inefficient for certain workloads like machine learning and graphics?",
+    "options": {
+      "A": "They lack floating-point units",
+      "B": "They are optimized for control flow rather than massive data parallelism",
+      "C": "They cannot access main memory efficiently",
+      "D": "They operate at lower clock frequencies"
+    },
+    "answer": "B"
+  },
+  {
+    "id": 6,
+    "question": "Which challenge becomes more severe as the number of on-chip cores increases?",
+    "options": {
+      "A": "Instruction decoding complexity",
+      "B": "Cache coherence and on-chip communication",
+      "C": "Compiler register allocation",
+      "D": "Branch target buffer sizing"
+    },
+    "answer": "B"
+  },
+  {
+    "id": 7,
+    "question": "Why does improving memory latency have a stronger impact on performance than improving memory bandwidth for many workloads?",
+    "options": {
+      "A": "Bandwidth is never a bottleneck",
+      "B": "Most programs are latency-sensitive rather than throughput-bound",
+      "C": "Caches eliminate bandwidth needs",
+      "D": "Latency affects only I/O operations"
+    },
+    "answer": "B"
+  },
+  {
+    "id": 8,
+    "question": "Why does heterogeneity (CPUs + GPUs + accelerators) provide better performance–energy tradeoffs than homogeneous multicore systems?",
+    "options": {
+      "A": "Heterogeneous systems simplify programming",
+      "B": "Specialized hardware can execute specific workloads more efficiently",
+      "C": "CPUs cannot scale beyond four cores",
+      "D": "Accelerators remove the need for operating systems"
+    },
+    "answer": "B"
+  },
+  {
+    "id": 9,
+    "question": "As technology scales further, why does reliability become a first-order design concern?",
+    "options": {
+      "A": "Larger transistors fail more often",
+      "B": "Smaller transistors are more susceptible to variations and transient faults",
+      "C": "Software errors dominate hardware failures",
+      "D": "Reliability improves automatically with scaling"
+    },
+    "answer": "B"
+  },
+  {
+    "id": 10,
+    "question": "Which statement best captures the architectural shift after the slowdown of Moore’s Law?",
+    "options": {
+      "A": "Performance growth depends mainly on higher clock speeds",
+      "B": "Architectural innovation and specialization dominate performance gains",
+      "C": "Memory systems no longer affect performance",
+      "D": "Single-thread performance continues to scale linearly"
+    },
+    "answer": "B"
+  },
+  {
+    "id": 11,
+    "question": "Why do program order dependences not need to be enforced in an out-of-order (OOO) processor for correctness?",
+    "options": {
+      "A": "They are automatically enforced by hardware",
+      "B": "They do not affect the visible architectural state",
+      "C": "They are eliminated by register renaming",
+      "D": "They are resolved by branch prediction"
+    },
+    "answer": "B"
+  },
+  {
+    "id": 12,
+    "question": "Which statement best explains why WAR and WAW dependences exist in conventional instruction sets?",
+    "options": {
+      "A": "Because instructions share execution units",
+      "B": "Because memory accesses are slow",
+      "C": "Because the number of architectural registers is limited",
+      "D": "Because instructions execute speculatively"
+    },
+    "answer": "C"
+  },
+  {
+    "id": 13,
+    "question": "Why does the presence of multiple branches within a fetch bundle make multi-instruction fetch difficult?",
+    "options": {
+      "A": "Branch predictors can track only one branch per cycle",
+      "B": "Instruction cache lines cannot hold multiple branches",
+      "C": "The fetch address of later instructions depends on earlier branch outcomes",
+      "D": "Decode must complete before fetch"
+    },
+    "answer": "C"
+  },
+  {
+    "id": 14,
+    "question": "What is the primary reason for adding tag bits to Instruction Status Table (IST) entries?",
+    "options": {
+      "A": "To reduce access latency",
+      "B": "To eliminate branch direction prediction",
+      "C": "To distinguish instructions that share the same index",
+      "D": "To increase the number of table entries"
+    },
+    "answer": "C"
+  },
+  {
+    "id": 15,
+    "question": "Why does an IST often predict 'not a branch' when no matching entry is found?",
+    "options": {
+      "A": "Most branches are unconditional",
+      "B": "Default prediction is always taken",
+      "C": "Non-branch instructions dominate typical code",
+      "D": "Branch targets are unavailable"
+    },
+    "answer": "C"
+  },
+  {
+    "id": 16,
+    "question": "What advantage does a 2-bit saturating counter provide over a 1-bit predictor for biased branches?",
+    "options": {
+      "A": "Faster predictor access",
+      "B": "Resistance to occasional outcome reversals",
+      "C": "Elimination of aliasing",
+      "D": "Prediction of branch targets"
+    },
+    "answer": "B"
+  },
+  {
+    "id": 17,
+    "question": "Which predictor configuration combines per-PC history with global branch history to improve accuracy?",
+    "options": {
+      "A": "GAg",
+      "B": "GAp",
+      "C": "PAg",
+      "D": "Static predictor"
+    },
+    "answer": "B"
+  },
+  {
+    "id": 18,
+    "question": "What problem does XORing PC bits with global history (as in GShare) solve?",
+    "options": {
+      "A": "Increasing table size",
+      "B": "Improving branch target prediction",
+      "C": "Reducing destructive interference",
+      "D": "Eliminating the need for tags"
+    },
+    "answer": "C"
+  },
+  {
+    "id": 19,
+    "question": "Why must results in an out-of-order (OOO) processor be written back to the architectural state in program order?",
+    "options": {
+      "A": "To simplify branch prediction",
+      "B": "To maximize instruction throughput",
+      "C": "To ensure precise exceptions",
+      "D": "To reduce register pressure"
+    },
+    "answer": "C"
+  },
+  {
+    "id": 20,
+    "question": "Why does increasing the instruction window size require highly accurate branch prediction?",
+    "options": {
+      "A": "Larger windows increase cache miss rates",
+      "B": "Mispredictions waste more speculative work",
+      "C": "Register renaming becomes ineffective",
+      "D": "Decode latency increases"
+    },
+    "answer": "B"
+  },
+  {
+    "id": 21,
+    "question": "A processor has a baseline CPI of 1.0. 20% of dynamic instructions are branches. The branch misprediction rate is 5% and the misprediction penalty is 10 cycles. What is the increase in average CPI due to branch mispredictions?",
+    "options": {
+      "A": "0.01",
+      "B": "0.05",
+      "C": "0.1",
+      "D": "0.5"
+    },
+    "answer": "C"
+  },
+  {
+    "id": 22,
+    "question": "Fetching 4 instructions per cycle is harder than fetching one per cycle mainly because:",
+    "options": {
+      "A": "The i-cache cannot deliver four bytes per cycle",
+      "B": "Instruction boundaries and multiple branch outcomes inside the bundle must be resolved or predicted early",
+      "C": "Decode logic cannot handle more than one instruction per cycle",
+      "D": "Wide fetch requires larger register files"
+    },
+    "answer": "B"
+  },
+  {
+    "id": 23,
+    "question": "The Instruction Status Table (IST) is indexed using low-order PC bits mainly because:",
+    "options": {
+      "A": "Lower bits vary less within loops",
+      "B": "A full PC-indexed table would be prohibitively large in area, power, and latency",
+      "C": "Lower bits uniquely identify instructions",
+      "D": "It simplifies return prediction"
+    },
+    "answer": "B"
+  },
+  {
+    "id": 24,
+    "question": "Destructive interference in a predictor refers to:",
+    "options": {
+      "A": "Wrong target address prediction",
+      "B": "Multiple branches in a block",
+      "C": "Compiler transformations confusing hardware",
+      "D": "Two different PCs mapping to the same entry and polluting state"
+    },
+    "answer": "D"
+  },
+  {
+    "id": 25,
+    "question": "Compared to a 1-bit predictor, a 2-bit predictor improves accuracy because it:",
+    "options": {
+      "A": "Tracks multiple targets",
+      "B": "Adds hysteresis to resist flipping",
+      "C": "Doubles entries",
+      "D": "Eliminates aliasing"
+    },
+    "answer": "B"
+  },
+  {
+    "id": 26,
+    "question": "Which branch behavior benefits most from global history predictors?",
+    "options": {
+      "A": "Always-taken branches",
+      "B": "Simple loop exits",
+      "C": "Context-dependent branch patterns",
+      "D": "Unconditional jumps"
+    },
+    "answer": "C"
+  },
+  {
+    "id": 27,
+    "question": "What is the key idea behind GShare predictor?",
+    "options": {
+      "A": "Separate per-PC histories",
+      "B": "XOR PC bits with global history to index table",
+      "C": "Use return address table",
+      "D": "Use multiple predictors with chooser"
+    },
+    "answer": "B"
+  },
+  {
+    "id": 28,
+    "question": "Why does a Return Address Stack improve return prediction accuracy?",
+    "options": {
+      "A": "Stores return targets in LIFO order matching call stack",
+      "B": "BTBs cannot store return addresses",
+      "C": "Handles conditional returns better",
+      "D": "Reduces cache pressure"
+    },
+    "answer": "A"
+  },
+  {
+    "id": 29,
+    "question": "Why is predecoding useful in instruction cache?",
+    "options": {
+      "A": "Determines instruction boundaries quickly during fetch",
+      "B": "Converts CISC to RISC permanently",
+      "C": "Removes branch prediction",
+      "D": "Increases registers"
+    },
+    "answer": "A"
+  },
+  {
+    "id": 30,
+    "question": "If each instruction has a 15% chance of being a branch, what is the probability that a 4-instruction bundle contains at least one branch?",
+    "options": {
+      "A": "22.5%",
+      "B": "47.8%",
+      "C": "15.0%",
+      "D": "85.0%"
+    },
+    "answer": "B"
+  },
+  {
+    "id": 31,
+    "question": "In stride-based address prediction, what role does the pattern bit (P) play?",
+    "options": {
+      "A": "Stores the last computed memory address",
+      "B": "Indicates whether a consistent stride has been detected",
+      "C": "Counts the number of cache hits",
+      "D": "Identifies colliding load-store pairs"
+    },
+    "answer": "B"
+  },
+  {
+    "id": 32,
+    "question": "Why is a PC-indexed structure sufficient for stride-based address prediction?",
+    "options": {
+      "A": "The PC directly encodes the stride",
+      "B": "PCs eliminate aliasing in predictors",
+      "C": "Loads from the same PC tend to access memory with similar patterns",
+      "D": "Memory addresses are unique per instruction"
+    },
+    "answer": "C"
+  },
+  {
+    "id": 33,
+    "question": "What action is taken when the Collision History Table (CHT) predicts a load as non-colliding?",
+    "options": {
+      "A": "The load waits for all older stores",
+      "B": "The load is squashed",
+      "C": "The LSQ is flushed",
+      "D": "The load is sent directly to the data cache"
+    },
+    "answer": "D"
+  },
+  {
+    "id": 34,
+    "question": "Why can the Collision History Table be updated after the load address is resolved?",
+    "options": {
+      "A": "Address computation happens before decode",
+      "B": "True load–store behavior is only known after address resolution",
+      "C": "CHT entries are speculative",
+      "D": "Loads do not require precise state"
+    },
+    "answer": "B"
+  },
+  {
+    "id": 35,
+    "question": "What additional benefit is obtained by augmenting collision prediction with a store–load distance (D)?",
+    "options": {
+      "A": "Improves branch prediction accuracy",
+      "B": "Reduces the size of the ROB",
+      "C": "Allows loads to wait for only a bounded number of prior stores",
+      "D": "Eliminates the need for the LSQ"
+    },
+    "answer": "C"
+  },
+  {
+    "id": 36,
+    "question": "In a store-set based scheme, why is a store allowed to belong to only one store set?",
+    "options": {
+      "A": "Stores cannot forward to multiple loads",
+      "B": "Store-set IDs are speculative",
+      "C": "Stores update memory immediately",
+      "D": "Hardware complexity must be bounded"
+    },
+    "answer": "D"
+  },
+  {
+    "id": 37,
+    "question": "What information does the LFST (Last Fetched Store Table) provide to a load?",
+    "options": {
+      "A": "The physical register holding the store value",
+      "B": "Whether the store has committed",
+      "C": "The instruction number of the most recent store in its store set",
+      "D": "The memory address of the store"
+    },
+    "answer": "C"
+  },
+  {
+    "id": 38,
+    "question": "Why is load-latency speculation particularly effective for L1 data cache accesses?",
+    "options": {
+      "A": "L1 access latency is short and highly predictable",
+      "B": "Loads never miss in L1",
+      "C": "L1 caches bypass the LSQ",
+      "D": "L1 cache hits are guaranteed"
+    },
+    "answer": "A"
+  },
+  {
+    "id": 39,
+    "question": "What is the primary purpose of using a confidence table in value prediction?",
+    "options": {
+      "A": "Increase prediction bandwidth",
+      "B": "Decide whether a predicted value should be trusted",
+      "C": "Store multiple predicted values",
+      "D": "Reduce predictor storage size"
+    },
+    "answer": "B"
+  },
+  {
+    "id": 40,
+    "question": "Why must the processor support recovery mechanisms when using aggressive speculation techniques?",
+    "options": {
+      "A": "Speculation increases instruction count",
+      "B": "Speculation eliminates precise exceptions",
+      "C": "Predictors cannot be trained online",
+      "D": "Predictions may be incorrect and affect dependent instructions"
+    },
+    "answer": "D"
+  },
+  {
+    "id": 41,
+    "question": "What is a forward slice of an instruction?",
+    "options": {
+      "A": "The set of instructions that the instruction depends on",
+      "B": "The subset of instructions predicted to hit in cache",
+      "C": "All instructions between fetch and commit",
+      "D": "The set of instructions that consume its outputs transitively"
+    },
+    "answer": "D"
+  },
+  {
+    "id": 42,
+    "question": "What is the role of the window of vulnerability (WV)?",
+    "options": {
+      "A": "Marks outstanding branch predictions",
+      "B": "A time window after a load where dependent instructions are at risk and may need replay",
+      "C": "Number of pipeline stages for verification",
+      "D": "Identifies instructions that will never be squashed"
+    },
+    "answer": "B"
+  },
+  {
+    "id": 43,
+    "question": "Why does delayed selective replay use a poison bit?",
+    "options": {
+      "A": "To speed up speculative execution",
+      "B": "To write results to ARF instead of ROB",
+      "C": "To prioritize retirement",
+      "D": "To propagate dependencies so only affected instructions are replayed"
+    },
+    "answer": "D"
+  },
+  {
+    "id": 44,
+    "question": "Why are token IDs propagated to dependent instructions in token-based replay?",
+    "options": {
+      "A": "To allocate extra registers",
+      "B": "To enable prefetching",
+      "C": "To group instructions for replay triggered by a single token",
+      "D": "To bypass rename lookup"
+    },
+    "answer": "C"
+  },
+  {
+    "id": 45,
+    "question": "How is a destination register's tokenVec computed at decode?",
+    "options": {
+      "A": "Copy from older register",
+      "B": "Random assignment",
+      "C": "Bitwise OR of source tokenVecs",
+      "D": "Cleared after execution"
+    },
+    "answer": "C"
+  },
+  {
+    "id": 46,
+    "question": "What is an orphan instruction in replay context?",
+    "options": {
+      "A": "Instruction with no producers",
+      "B": "Squashed instruction with no wakeup source after re-entry",
+      "C": "Instruction older than ROB head",
+      "D": "Instruction with operands in ARF"
+    },
+    "answer": "B"
+  },
+  {
+    "id": 47,
+    "question": "What is the main tradeoff in ARF-based design compared to PRF-based design?",
+    "options": {
+      "A": "Simplifies recovery but duplicates values and storage",
+      "B": "Reduces commit complexity but prevents renaming",
+      "C": "Eliminates value broadcasting",
+      "D": "Always lower power consumption"
+    },
+    "answer": "A"
+  },
+  {
+    "id": 48,
+    "question": "What benefit does software pipelining provide for loops?",
+    "options": {
+      "A": "Eliminates dependencies",
+      "B": "Overlaps execution of multiple iterations",
+      "C": "Serializes execution",
+      "D": "Duplicates loop body"
+    },
+    "answer": "B"
+  },
+  {
+    "id": 49,
+    "question": "Which replay implementation moves issued instructions to a separate replay queue?",
+    "options": {
+      "A": "Non-selective replay",
+      "B": "Keep instructions in issue queue",
+      "C": "Replay-queue method",
+      "D": "TokenVec commit elimination"
+    },
+    "answer": "C"
+  },
+  {
+    "id": 50,
+    "question": "What do the two token outcomes represent after the token-head instruction completes?",
+    "options": {
+      "A": "Extra cycles trigger replay, otherwise clear token bits",
+      "B": "Extra cycles clear tokens, otherwise flush pipeline",
+      "C": "Extra cycles assign new tokens",
+      "D": "No effect"
+    },
+    "answer": "A"
+  },
+  {
+    "id": 51,
+    "question": "In EPIC/VLIW architectures, who is primarily responsible for scheduling instructions for parallel execution?",
+    "options": {
+      "A": "Compiler at compile time",
+      "B": "Microcode engine",
+      "C": "Operating system",
+      "D": "Hardware at runtime"
+    },
+    "answer": "A"
+  },
+  {
+    "id": 52,
+    "question": "Which feature in an EPIC architecture allows conditional execution without traditional branch instructions?",
+    "options": {
+      "A": "Loop unrolling",
+      "B": "Predicated execution",
+      "C": "Dynamic scheduling",
+      "D": "Speculative store buffering"
+    },
+    "answer": "B"
+  },
+  {
+    "id": 53,
+    "question": "The Advanced Load Address Table (ALAT) is used to support which operation?",
+    "options": {
+      "A": "Branch prediction",
+      "B": "Register renaming",
+      "C": "Load-store ordering verification",
+      "D": "Cache coherence"
+    },
+    "answer": "C"
+  },
+  {
+    "id": 54,
+    "question": "Load boosting in EPIC processors is primarily intended to:",
+    "options": {
+      "A": "Eliminate cache misses",
+      "B": "Improve branch prediction accuracy",
+      "C": "Execute loads earlier than what program order suggests",
+      "D": "Reduce register pressure"
+    },
+    "answer": "C"
+  },
+  {
+    "id": 55,
+    "question": "Replay mechanisms in speculative execution are triggered when:",
+    "options": {
+      "A": "An interrupt occurs",
+      "B": "Speculation assumptions are violated",
+      "C": "A cache line is evicted",
+      "D": "A branch is taken"
+    },
+    "answer": "B"
+  },
+  {
+    "id": 56,
+    "question": "In the graphics pipeline, rasterization converts:",
+    "options": {
+      "A": "Vertices into fragments",
+      "B": "Colors into depth values",
+      "C": "Pixels into triangles",
+      "D": "Fragments into textures"
+    },
+    "answer": "A"
+  },
+  {
+    "id": 57,
+    "question": "Which stage of the graphics pipeline determines the final color of each pixel?",
+    "options": {
+      "A": "Geometry setup",
+      "B": "Fragment processing",
+      "C": "Vertex processing",
+      "D": "Clipping"
+    },
+    "answer": "B"
+  },
+  {
+    "id": 58,
+    "question": "In CUDA, a kernel is best described as:",
+    "options": {
+      "A": "A CPU scheduling policy",
+      "B": "A hardware accelerator unit",
+      "C": "A function executed on the GPU by many threads",
+      "D": "A memory allocation mechanism"
+    },
+    "answer": "C"
+  },
+  {
+    "id": 59,
+    "question": "Threads in a CUDA block cooperate primarily through:",
+    "options": {
+      "A": "Texture memory",
+      "B": "Global memory",
+      "C": "Constant memory",
+      "D": "Shared memory"
+    },
+    "answer": "D"
+  },
+  {
+    "id": 60,
+    "question": "CUDA streams enable:",
+    "options": {
+      "A": "Static thread allocation",
+      "B": "Deterministic scheduling of warps",
+      "C": "Automatic memory compression",
+      "D": "Concurrent execution and overlapping operations"
+    },
+    "answer": "D"
+  },
+  {
+    "id": 61,
+    "question": "Why can warp divergence lead to deadlock when half the threads loop and half update a shared variable?",
+    "options": {
+      "A": "GPUs do not support shared variables",
+      "B": "Threads in a warp must finish an instruction together before proceeding",
+      "C": "Each thread has a separate program counter",
+      "D": "Conditional branches are not supported"
+    },
+    "answer": "B"
+  },
+  {
+    "id": 62,
+    "question": "Why is making each register entry extremely wide impractical in GPUs?",
+    "options": {
+      "A": "It increases instruction latency",
+      "B": "It prevents predicated execution",
+      "C": "It requires extremely high bandwidth and large hardware structures",
+      "D": "It reduces thread-level parallelism"
+    },
+    "answer": "C"
+  },
+  {
+    "id": 63,
+    "question": "How does predicated execution help GPUs handle conditional branches?",
+    "options": {
+      "A": "Execute both paths but selectively commit results",
+      "B": "Assign different PCs to threads",
+      "C": "Convert branches into function calls",
+      "D": "Serialize branch execution"
+    },
+    "answer": "A"
+  },
+  {
+    "id": 64,
+    "question": "Increasing block size in a cache helps primarily because:",
+    "options": {
+      "A": "It exploits spatial locality",
+      "B": "It reduces hit time",
+      "C": "It eliminates conflict misses",
+      "D": "It reduces write-back traffic"
+    },
+    "answer": "A"
+  },
+  {
+    "id": 65,
+    "question": "Why does a direct-mapped cache suffer higher conflict misses?",
+    "options": {
+      "A": "Uses fewer tag bits",
+      "B": "Each block maps to exactly one cache line",
+      "C": "No valid bits",
+      "D": "No write-back support"
+    },
+    "answer": "B"
+  },
+  {
+    "id": 66,
+    "question": "Increasing associativity in cache generally:",
+    "options": {
+      "A": "Always reduces hit time",
+      "B": "Removes replacement policies",
+      "C": "Eliminates compulsory misses",
+      "D": "Reduces conflict misses but increases latency and power"
+    },
+    "answer": "D"
+  },
+  {
+    "id": 67,
+    "question": "Why is eviction simpler in a write-through cache?",
+    "options": {
+      "A": "No misses occur",
+      "B": "No valid bits",
+      "C": "Data is always consistent with lower memory",
+      "D": "No conflict misses"
+    },
+    "answer": "C"
+  },
+  {
+    "id": 68,
+    "question": "Why is a TLB necessary?",
+    "options": {
+      "A": "Page tables cannot store mappings",
+      "B": "Page tables cannot handle virtual addresses",
+      "C": "Page table access latency is too high for every reference",
+      "D": "It increases associativity"
+    },
+    "answer": "C"
+  },
+  {
+    "id": 69,
+    "question": "A 32-bit system has a 64 KB direct-mapped cache with 64-byte blocks. What is Tag | Index | Offset?",
+    "options": {
+      "A": "16 | 10 | 6",
+      "B": "10 | 16 | 6",
+      "C": "16 | 6 | 10",
+      "D": "12 | 8 | 12"
+    },
+    "answer": "A"
+  },
+  {
+    "id": 70,
+    "question": "Given L1 hit time = 2 cycles, miss rate = 5%, miss penalty = 100 cycles, what is AMAT?",
+    "options": {
+      "A": "2 cycles",
+      "B": "7 cycles",
+      "C": "5 cycles",
+      "D": "102 cycles"
+    },
+    "answer": "B"
+  },
+  {
+    "id": 71,
+    "question": "In an SRAM cell, why are bit lines provided in complementary pairs?",
+    "options": {
+      "A": "To simplify address decoding",
+      "B": "To reduce cache size",
+      "C": "To enable differential sensing by the sense amplifier",
+      "D": "To reduce associativity"
+    },
+    "answer": "C"
+  },
+  {
+    "id": 72,
+    "question": "What is the main role of the sense amplifier in a cache memory array?",
+    "options": {
+      "A": "Control replacement policy",
+      "B": "Detect small voltage differences on bit lines",
+      "C": "Store tag values",
+      "D": "Generate memory addresses"
+    },
+    "answer": "B"
+  },
+  {
+    "id": 73,
+    "question": "Why is precharging used before reading from SRAM bit lines?",
+    "options": {
+      "A": "To eliminate tag comparison",
+      "B": "To reduce miss penalty",
+      "C": "To increase cache capacity",
+      "D": "To avoid waiting for full voltage swings during reads"
+    },
+    "answer": "D"
+  },
+  {
+    "id": 74,
+    "question": "In cache design using Cacti, what is the purpose of evaluating different cache organizations?",
+    "options": {
+      "A": "To determine the fastest configuration under area and power constraints",
+      "B": "To increase memory bandwidth automatically",
+      "C": "To eliminate compulsory misses",
+      "D": "To remove tag storage"
+    },
+    "answer": "A"
+  },
+  {
+    "id": 75,
+    "question": "In the hierarchy bank → subbank → mat → subarray, which structure stores a full cache block?",
+    "options": {
+      "A": "Mat",
+      "B": "Subarray",
+      "C": "Bank",
+      "D": "Subbank"
+    },
+    "answer": "D"
+  },
+  {
+    "id": 76,
+    "question": "What is the primary advantage of banking a cache?",
+    "options": {
+      "A": "Parallel access to independent banks",
+      "B": "Reduced cache size",
+      "C": "Elimination of conflict misses",
+      "D": "Lower tag storage"
+    },
+    "answer": "A"
+  },
+  {
+    "id": 77,
+    "question": "Why are pipelined caches used in modern processors?",
+    "options": {
+      "A": "To reduce the cache miss rate",
+      "B": "To eliminate tag comparisons",
+      "C": "To increase the throughput even if the access latency remains high",
+      "D": "To reduce cache capacity"
+    },
+    "answer": "C"
+  },
+  {
+    "id": 78,
+    "question": "In a non-blocking cache, what happens when a cache miss occurs?",
+    "options": {
+      "A": "The processor halts until data arrives",
+      "B": "The cache is flushed",
+      "C": "Later accesses can continue while the miss is serviced",
+      "D": "The tag array is disabled"
+    },
+    "answer": "C"
+  },
+  {
+    "id": 79,
+    "question": "In skewed associative caches, conflict misses are reduced by:",
+    "options": {
+      "A": "Eliminating tag arrays",
+      "B": "Increasing cache block size",
+      "C": "Using write-through policy",
+      "D": "Using multiple indexing functions for different ways"
+    },
+    "answer": "D"
+  },
+  {
+    "id": 80,
+    "question": "In loop tiling, why are computations performed on smaller blocks of arrays?",
+    "options": {
+      "A": "To eliminate cache coherence",
+      "B": "To ensure that the working data fits within the cache",
+      "C": "To reduce branch mispredictions",
+      "D": "To reduce the instruction count"
+    },
+    "answer": "B"
+  },
+  {
+    "id": 81,
+    "question": "What is the primary advantage of using a trace cache in an instruction pipeline?",
+    "options": {
+      "A": "Its sole purpose is to store contiguous instruction bytes so that temporal locality in instruction fetch improves.",
+      "B": "It stores sequences of executed basic blocks (traces), allowing the processor to fetch along the correct control-flow path without performing branch prediction for each branch.",
+      "C": "It eliminates all instruction cache misses by replacing the L2 cache.",
+      "D": "It compresses instruction streams to increase effective cache capacity."
+    },
+    "answer": "B"
+  },
+  {
+    "id": 82,
+    "question": "Which statement best describes Markov prefetching as presented in the slides?",
+    "options": {
+      "A": "It predicts future accesses using only spatial locality (X+1, X+2 lines).",
+      "B": "It records past miss sequences and, given a miss at line X, predicts which line is likely to miss next based on observed transitions.",
+      "C": "It relies solely on function call graphs and compiler annotations.",
+      "D": "It prefetches addresses based on fixed strides without any history."
+    },
+    "answer": "B"
+  },
+  {
+    "id": 83,
+    "question": "Why does a trace cache avoid distributing the micro-operations of a single macro instruction across multiple cache lines?",
+    "options": {
+      "A": "To reduce the number of cache sets required to store traces.",
+      "B": "To ensure that a macro instruction can be decoded independently by each pipeline stage.",
+      "C": "To ensure that the processor can fetch and execute the instruction atomically without needing multiple cache accesses for its micro-ops.",
+      "D": "To guarantee that every trace contains the same number of instructions."
+    },
+    "answer": "C"
+  },
+  {
+    "id": 84,
+    "question": "What is the main benefit of the “runahead” mode during a long L2 miss?",
+    "options": {
+      "A": "It postpones all branch prediction updates until the miss completes.",
+      "B": "It stalls the pipeline to conserve power while waiting for memory.",
+      "C": "It checkpoints state, speculatively executes beyond the miss to prefetch useful data and train predictors, then restores state when the miss returns.",
+      "D": "It converts all speculative values to zero to simplify recovery."
+    },
+    "answer": "C"
+  },
+  {
+    "id": 85,
+    "question": "Shared-memory vs Message-passing — which statement is most accurate?",
+    "options": {
+      "A": "Shared-memory programming is typically harder but scales better than message-passing.",
+      "B": "The message-passing paradigm is easier to implement and is always portable across machines.",
+      "C": "Shared-memory is easier to program but has scalability issues ; message-passing is harder but more scalable.",
+      "D": "Both models have identical programmability and scalability."
+    },
+    "answer": "C"
+  },
+  {
+    "id": 86,
+    "question": "Suppose the sequential fraction fseq=0.10. With P=8 processors, what is the theoretical speedup S according to Amdahl’s law?",
+    "options": {
+      "A": "≈ 2.5",
+      "B": "≈ 4.71",
+      "C": "≈ 7.2",
+      "D": "≈ 8.0"
+    },
+    "answer": "B"
+  },
+  {
+    "id": 87,
+    "question": "Which description best matches Simultaneous Multithreading (SMT)?",
+    "options": {
+      "A": "Run instructions from multiple hardware threads simultaneously and dynamically partition issue slots between them.",
+      "B": "Switch to another thread only when the current thread encounters a long-latency event.",
+      "C": "Execute one instruction per thread in a strict round-robin order.",
+      "D": "Run software threads on different physical machines."
+    },
+    "answer": "A"
+  },
+  {
+    "id": 88,
+    "question": "Why is cache coherence required in a distributed cache design?",
+    "options": {
+      "A": "To make multiple physical locations storing the same variable behave like a single logical location (same value).",
+      "B": "To allow each core to keep an independent copy with no coordination.",
+      "C": "To eliminate all cache misses in the system.",
+      "D": "To guarantee that only one core can ever read a variable."
+    },
+    "answer": "A"
+  },
+  {
+    "id": 89,
+    "question": "Memory model vs coherence — which is correct?",
+    "options": {
+      "A": "Coherence and memory model are identical concepts.",
+      "B": "Coherence allows arbitrary outcomes across threads.",
+      "C": "The memory model only matters for single-threaded programs.",
+      "D": "Memory consistency (specified by the memory model) defines allowed behaviors, coherence is a subset that specifies the ordering for a single memory location."
+    },
+    "answer": "D"
+  },
+  {
+    "id": 90,
+    "question": "Gustafson–Barsis’s Law states which of the following?",
+    "options": {
+      "A": "The speedup is independent of problem size.",
+      "B": "If you scale the parallel portion of the workload with the number of processors, you can achieve near-linear speedup.",
+      "C": "Adding processors always gives linear speedup.",
+      "D": "The sequential fraction must be zero to get any speedup."
+    },
+    "answer": "B"
+  },
+  {
+    "id": 91,
+    "question": "Which condition must hold for an execution to be sequentially consistent (SC)?",
+    "options": {
+      "A": "All writes must be atomic across all variables",
+      "B": "Operations must execute without reordering",
+      "C": "Execution must be equivalent to a legal sequential execution respecting program order",
+      "D": "All reads must occur after writes"
+    },
+    "answer": "C"
+  },
+  {
+    "id": 92,
+    "question": "What does Per Location Sequential Consistency (PLSC) ensure?",
+    "options": {
+      "A": "Global ordering across all variables",
+      "B": "Sequential consistency across threads",
+      "C": "Sequential consistency for accesses to a single memory location",
+      "D": "Elimination of cache coherence"
+    },
+    "answer": "C"
+  },
+  {
+    "id": 93,
+    "question": "Why does PLSC not guarantee full sequential consistency?",
+    "options": {
+      "A": "It eliminates write serialization",
+      "B": "It enforces strict ordering of instructions",
+      "C": "It ignores accesses to the same variable",
+      "D": "It does not enforce ordering across different memory locations"
+    },
+    "answer": "D"
+  },
+  {
+    "id": 94,
+    "question": "What is the main reason modern processors do not strictly enforce SC?",
+    "options": {
+      "A": "SC increases cache size",
+      "B": "SC prevents many performance optimizations like out-of-order execution",
+      "C": "SC reduces memory bandwidth",
+      "D": "SC increases instruction count"
+    },
+    "answer": "B"
+  },
+  {
+    "id": 95,
+    "question": "What is meant by non-atomic writes in multicore systems?",
+    "options": {
+      "A": "Writes that are not stored in memory",
+      "B": "Writes that are visible to all threads at the same time",
+      "C": "Writes that appear at different times to different threads",
+      "D": "Writes that are executed out of order"
+    },
+    "answer": "C"
+  },
+  {
+    "id": 96,
+    "question": "Which of the following is always globally ordered due to PLSC?",
+    "options": {
+      "A": "Reads to different variables",
+      "B": "Writes to the same memory location",
+      "C": "All memory operations",
+      "D": "Instruction fetches"
+    },
+    "answer": "B"
+  },
+  {
+    "id": 97,
+    "question": "What is the key idea behind an execution witness?",
+    "options": {
+      "A": "It tracks branch prediction",
+      "B": "It stores cache states",
+      "C": "It replaces program order",
+      "D": "It represents execution as a graph of operations and dependencies"
+    },
+    "answer": "D"
+  },
+  {
+    "id": 98,
+    "question": "Which edge represents program order (po) in an execution witness?",
+    "options": {
+      "A": "Between operations from different threads",
+      "B": "Between memory operations of the same thread",
+      "C": "Between reads and writes globally",
+      "D": "Between cache lines"
+    },
+    "answer": "B"
+  },
+  {
+    "id": 99,
+    "question": "What does a read-from (rf) edge indicate?",
+    "options": {
+      "A": "Ordering between two writes",
+      "B": "Dependency between threads",
+      "C": "A read obtaining its value from a specific write",
+      "D": "Cache invalidation"
+    },
+    "answer": "C"
+  },
+  {
+    "id": 100,
+    "question": "Why must an execution witness graph be acyclic?",
+    "options": {
+      "A": "To allow conversion into a valid sequential execution (topological order)",
+      "B": "To ensure cache coherence",
+      "C": "To reduce memory usage",
+      "D": "To eliminate read operations"
+    },
+    "answer": "A"
+  },
+  {
+    "id": 101,
+    "question": "Why are cache-coherence protocols that use buses called snoopy protocols?",
+    "options": {
+      "A": "Because only the directory can observe messages",
+      "B": "Because messages are point-to-point and private",
+      "C": "Because all messages are broadcast and every cache can inspect them",
+      "D": "Because caches only communicate during writes"
+    },
+    "answer": "C"
+  },
+  {
+    "id": 102,
+    "question": "In the MSI protocol, what is the key meaning of the M (Modified) state?",
+    "options": {
+      "A": "Only one cache has the block, and no other cache has a valid copy",
+      "B": "Many caches can read the block simultaneously",
+      "C": "The block is shared and cannot be written",
+      "D": "The block is only present in lower memory"
+    },
+    "answer": "A"
+  },
+  {
+    "id": 103,
+    "question": "Why was the E (Exclusive) state added in MESI?",
+    "options": {
+      "A": "To force every read to go to lower memory",
+      "B": "To allow multiple readers with no invalidations",
+      "C": "To remove the need for writeback on eviction",
+      "D": "To avoid an extra bus upgrade message when a block is read privately and later written"
+    },
+    "answer": "D"
+  },
+  {
+    "id": 104,
+    "question": "In the MOESI protocol, when another cache requests a block that is in E or M state, the line moves to which state?",
+    "options": {
+      "A": "I",
+      "B": "O",
+      "C": "S",
+      "D": "U"
+    },
+    "answer": "B"
+  },
+  {
+    "id": 105,
+    "question": "What is the main scalability problem with bus-based coherence systems?",
+    "options": {
+      "A": "They cannot support reads",
+      "B": "They require a directory entry for every block",
+      "C": "They usually do not scale beyond about 4 to 8 cores",
+      "D": "They cannot enforce global order of writes"
+    },
+    "answer": "C"
+  },
+  {
+    "id": 106,
+    "question": "Why are directory protocols considered more scalable?",
+    "options": {
+      "A": "They replace the shared bus with a dedicated directory that coordinates coherence messages",
+      "B": "They eliminate the need for cache coherence",
+      "C": "They force all caches to store identical copies of all blocks",
+      "D": "They only work for write-invalidate protocols"
+    },
+    "answer": "A"
+  },
+  {
+    "id": 107,
+    "question": "In directory-based cache coherence protocols, how is the list of sharers for a cache block commonly represented?",
+    "options": {
+      "A": "A linked list of addresses",
+      "B": "A hash table of cache tags",
+      "C": "A queue of recent readers",
+      "D": "A bit vector indicating which caches hold a copy of the block"
+    },
+    "answer": "D"
+  },
+  {
+    "id": 108,
+    "question": "Which of the following best describes false sharing in cache coherence systems?",
+    "options": {
+      "A": "Two threads write to the same variable concurrently without synchronization",
+      "B": "Multiple threads access different variables within the same cache block, causing unnecessary coherence traffic",
+      "C": "A cache incorrectly reports a hit for a missing block",
+      "D": "A directory entry cannot track all sharers due to limited size"
+    },
+    "answer": "B"
+  },
+  {
+    "id": 109,
+    "question": "In a fully mapped directory with 12 processors, how many bits are needed to represent the sharer list for one block?",
+    "options": {
+      "A": "8.0",
+      "B": "10.0",
+      "C": "12.0",
+      "D": "16.0"
+    },
+    "answer": "C"
+  },
+  {
+    "id": 110,
+    "question": "Why is a fully mapped directory (bit vector of all processors) often impractical in large systems?",
+    "options": {
+      "A": "It cannot track which caches hold a block",
+      "B": "It introduces excessive storage overhead proportional to the number of processors",
+      "C": "It prevents multiple caches from sharing a block",
+      "D": "It eliminates the need for coherence protocols"
+    },
+    "answer": "B"
+  },
+  {
+    "id": 111,
+    "question": "In lock-set based data race detection, what does an empty lock set for a variable indicate?",
+    "options": {
+      "A": "The variable is protected by multiple locks",
+      "B": "The variable is thread-local",
+      "C": "The variable is read-only",
+      "D": "There is no synchronization protecting the variable"
+    },
+    "answer": "D"
+  },
+  {
+    "id": 112,
+    "question": "In lock-set based data race detection, let L(v) denote the lock set of a variable v, and L(T) denote the set of locks held by thread T. After an access by thread T, how is L(v) updated?",
+    "options": {
+      "A": "L(v)=L(v)∪L(T)",
+      "B": "L(v)=L(T)",
+      "C": "L(v)=L(v)∩L(T)",
+      "D": "L(v)=ϕ"
+    },
+    "answer": "C"
+  },
+  {
+    "id": 113,
+    "question": "Two vector clocks are said to be incomparable when:",
+    "options": {
+      "A": "One clock dominates the other",
+      "B": "They are equal",
+      "C": "There is no happens-before relationship between them",
+      "D": "They belong to the same thread"
+    },
+    "answer": "C"
+  },
+  {
+    "id": 114,
+    "question": "In vector clock-based systems, what happens when a thread receives a message?",
+    "options": {
+      "A": "It updates its clock to include the sender’s state",
+      "B": "It resets its clock",
+      "C": "It ignores the sender’s clock",
+      "D": "It decreases its timestamp"
+    },
+    "answer": "A"
+  },
+  {
+    "id": 115,
+    "question": "In transactional memory, when does a conflict occur between two transactions?",
+    "options": {
+      "A": "When both transactions commit simultaneously",
+      "B": "When their read/write sets overlap",
+      "C": "When they access different variables",
+      "D": "When they execute on different cores"
+    },
+    "answer": "B"
+  },
+  {
+    "id": 116,
+    "question": "Which of the following correctly describes an aborted transaction?",
+    "options": {
+      "A": "Its execution cannot restart",
+      "B": "Its writes are partially visible",
+      "C": "Its effects are not made visible to memory",
+      "D": "It commits with reduced priority"
+    },
+    "answer": "C"
+  },
+  {
+    "id": 117,
+    "question": "In optimistic concurrency control, when are conflicts typically detected?",
+    "options": {
+      "A": "At commit time",
+      "B": "During instruction fetch",
+      "C": "Before execution begins",
+      "D": "During cache replacement"
+    },
+    "answer": "A"
+  },
+  {
+    "id": 118,
+    "question": "In eager version management, how are writes handled?",
+    "options": {
+      "A": "Stored in redo logs until commit",
+      "B": "Written directly to memory with undo logging",
+      "C": "Discarded until validation",
+      "D": "Stored only in cache"
+    },
+    "answer": "B"
+  },
+  {
+    "id": 119,
+    "question": "What is the key characteristic of opacity in transactional memory?",
+    "options": {
+      "A": "Only committed transactions see consistent state",
+      "B": "Transactions can observe intermediate states",
+      "C": "Only read-only transactions see consistent state",
+      "D": "Even aborted transactions must see a consistent state"
+    },
+    "answer": "D"
+  },
+  {
+    "id": 120,
+    "question": "In TL2 software transactional memory, when are locks acquired?",
+    "options": {
+      "A": "At the beginning of execution",
+      "B": "During every read operation",
+      "C": "After abort",
+      "D": "Only at commit time"
+    },
+    "answer": "D"
+  }
+]
