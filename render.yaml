@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: snquiz
+    env: java
+    buildCommand: ./mvnw clean package -DskipTests
+    startCommand: java -jar target/quizapp-*.jar
+    envVars:
+      - key: PORT
+        value: 8080
